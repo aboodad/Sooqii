@@ -35,6 +35,10 @@ const nextConfig = {
       { protocol: 'https', hostname: 'images.unsplash.com' },
     ],
   },
+  // ملف ربط تطبيق أندرويد يُخدَم من مسار عادي (لا يحتاج مجلدًا مخفيًا في public)
+  async rewrites() {
+    return { beforeFiles: [{ source: '/.well-known/assetlinks.json', destination: '/api/assetlinks' }] };
+  },
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }];
   },
